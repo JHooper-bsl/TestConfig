@@ -9,8 +9,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddValidatedOptions<AppSettings>(
-  builder.Configuration, AppSettings.SectionName);
+builder.Services
+    .AddOptions<SubscriptionTiers>()
+    .Bind(builder.Configuration.GetSection(SubscriptionTiers.SectionName));
 
 var app = builder.Build();
 
