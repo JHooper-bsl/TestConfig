@@ -2,9 +2,19 @@
 
 namespace TestConfig;
 
-public class SubscriptionTiers : List<SubscriptionTier>
+public class AppSettings
 {
-    public const string SectionName = "SubscriptionTiers";
+    public const string SectionName = "AppSettings";
+
+    public SubscriptionTier[] SubscriptionTiers { get; set; } = [];
 }
 
-public record SubscriptionTier([Required] string Tier, IEnumerable<string> ActiveModules);
+public class SubscriptionTier
+{
+    public const string SectionName = "SubscriptionTiers";
+    
+    [Required]
+    public string Tier { get; set; } = string.Empty;
+
+    public List<string> ActiveModules { get; set; } = new();
+}
